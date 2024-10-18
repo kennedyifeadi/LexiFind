@@ -1,19 +1,19 @@
-import { IoIosBook } from "react-icons/io";
-import { FaBookAtlas } from "react-icons/fa6";
-import { FaBookmark } from "react-icons/fa6";
-import { MdGTranslate } from "react-icons/md";
+import { IoBookOutline } from "react-icons/io5";
+import { LuBook } from "react-icons/lu";
+import { CiBookmark } from "react-icons/ci";
+import { SiGoogletranslate } from "react-icons/si";
 
 export const Nav = () =>{
     return(
-        <div className="w-full h-[70px] shadow-[0px_2px_5px_#00000065] px-5">
-            <nav className="flex justify-between items-center p-4 bg-[#2c003e] w-full h-full ">
-                <div className="text-[#d1c4e9] font-bold text-2xl">Lexi<span className="text-[#ffeb3b]">Find</span></div>
-                <div>
-                    <ul className="flex space-x-4">
-                        <li className="text-[#e0e0e0]"><a href="" className="flex md:items-center md:gap-1"><FaBookAtlas /> Find word</a></li>
-                        <li className="text-[#e0e0e0]"><a href="" className="flex md:items-center md:gap-1"><MdGTranslate /> Translate</a></li>
-                        <li className="text-[#e0e0e0]"><a href="" className="flex md:items-center md:gap-1"><IoIosBook /> Thesaurus</a></li>
-                        <li className="text-[#e0e0e0]"><a href="" className="flex md:items-center md:gap-1"><FaBookmark /> Bookmarks</a></li>
+        <div className="w-[18%] h-full shadow-[0px_2px_5px_#00000065]">
+            <nav className="flex flex-col items-center pt-4 bg-[#FFFFFF] w-full h-full ">
+                <div className="text-[#6200EA] font-bold text-[36px]">Lexi<span className="text-[#FF5722]">Find</span></div>
+                <div className="w-full h-[50%]  mt-8 ">
+                    <ul className="flex flex-col w-full h-full justify-around pl-4 ">
+                        <li className="text-[#333333] text-[24px]"><a href="" className="flex md:items-center md:gap-1"><LuBook /> Find word</a></li>
+                        <li className="text-[#333333] text-[24px]"><a href="" className="flex md:items-center md:gap-1"><SiGoogletranslate /> Translate</a></li>
+                        <li className="text-[#333333] text-[24px]"><a href="" className="flex md:items-center md:gap-1"><IoBookOutline /> Thesaurus</a></li>
+                        <li className="text-[#333333] text-[24px]"><a href="" className="flex md:items-center md:gap-1"><CiBookmark /> Bookmarks</a></li>
                     </ul>
                 </div>
             </nav>
