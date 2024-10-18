@@ -1,6 +1,4 @@
-
-
-export const dictionary = () =>{
+export const Greetings = () =>{
     return(
         <div>
             
