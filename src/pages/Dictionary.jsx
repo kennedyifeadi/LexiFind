@@ -1,6 +1,6 @@
-import { Greetings } from "./components/Greetings"
-import { Dailyword } from "./components/Dailyword"
-import { Dicsearch } from "./components/Dicsearch"
+import { Greetings } from "../components/Greetings"
+import { Dailyword } from "../components/Dailyword"
+import { Dicsearch } from "../components/Dicsearch"
 
 
 export const dictionary = () =>{
