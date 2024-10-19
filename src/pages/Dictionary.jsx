@@ -1,14 +1,14 @@
 import { Greetings } from "../components/Greetings"
 import { Dailyword } from "../components/Dailyword"
-import { Dicsearch } from "../components/Dicsearch"
+import { SearchWord } from "../components/Dicsearch"
 
 
-export const dictionary = () =>{
+export const Dictionary = () =>{
     return(
-        <div className="h-full w-[82%] flex flex-col">
+        <div className="h-full w-full flex flex-col">
             <Greetings />
             <Dailyword />
-            <Dicsearch />
+            <SearchWord />
         </div>
     )
 }

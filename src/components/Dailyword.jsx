@@ -1,4 +1,4 @@
-export const Greetings = () =>{
+export const Dailyword = () =>{
     return(
         <div>
             

@@ -1,6 +1,6 @@
-export const Greetings = () =>{
+export const Thesaurs = () =>{
     return(
-        <div>
+        <div className="h-full w-full flex flex-col">
             
         </div>
     )
