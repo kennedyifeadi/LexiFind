@@ -1,30 +1,15 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 import { Nav } from "./components/Nav"
-import { Dictionary } from "./pages/Dictionary"
-import { Translator } from "./pages/Translator"
-import { Thesaurs } from "./pages/Thesaurus"
-import { PageNotFound } from "./pages/PageNotFound"
-import { Bookmarks } from "./pages/Bookmarks"
-import { AnimatePresence } from "framer-motion";
+import { AnimatedRoutes } from "./components/AnimatedRoutes";
 
 
 function App() {
 
   return (
     <BrowserRouter>
-      <div className="md:w-full md:h-[100dvh] flex bg-[#FFFFFF]">
+      <div className="md:w-full md:h-[100dvh] flex bg-[#FFFFFF] overflow-hidden">
       <Nav />
-      <div className="h-full w-[82%]">
-        <AnimatePresence>
-        <Routes>
-          <Route path="/" element={<Dictionary/>} exact />
-          <Route path="/translator" element={<Translator/>} />
-          <Route path="/thesaurus" element={<Thesaurs/>} />
-          <Route path="/bookmarks" element={<Bookmarks/>} />
-          <Route path="*" element={<PageNotFound/>} /> 
-      </Routes>
-        </AnimatePresence>
-      </div>
+      <AnimatedRoutes />
       </div>
     </ BrowserRouter>
 

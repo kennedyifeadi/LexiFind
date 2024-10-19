@@ -1,7 +1,15 @@
+import { motion } from "framer-motion"
+
 export const Bookmarks = () =>{
+
     return(
-        <div className="h-full w-full flex flex-col">
+        <motion.div 
+        className="md:h-full md:w-full flex flex-col"
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        exit={{opacity:0}}
+        >
             kjdsfdlvklfdvdf
-        </div>
+        </motion.div>
     )
 }
