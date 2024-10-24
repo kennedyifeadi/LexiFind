@@ -12,7 +12,6 @@ export const Dictionary = () =>{
         animate={{opacity:1}}
         exit={{opacity:0}}
         >
-            rgjkergkgemr
             <Greetings />
             <Dailyword />
             <SearchWord />
