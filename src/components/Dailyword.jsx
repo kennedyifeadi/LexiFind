@@ -1,6 +1,6 @@
 export const Dailyword = () =>{
     return(
-        <div className="flex flex-col gap-2 w-full h-[30%] px-6">
+        <div className="flex flex-col gap-2 w-full h-[25%] px-6">
             <h1 className="font-bold text-[24px]"> <span className="text-[#6200EA]">Word</span> of the <span className="text-[#FF5722]">day</span>!</h1>
             <div className="flex gap-5">
                 <h1 className="font-bold text-[18px]">Word</h1>
