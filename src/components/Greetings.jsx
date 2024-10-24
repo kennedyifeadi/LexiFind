@@ -12,7 +12,7 @@ export const Greetings = () =>{
 
     return(
         <div className="w-full h-[25%] px-6 py-4">
-            <h1 className="font-bold text-[48px] flex items-center relative w-[30%]  ">Hey there <iframe src="https://lottie.host/embed/4947a3e2-a083-4c17-82be-a2b0c1022af3/0sT4zRxHoK.json" className="w-20 h-20 rotate-[-30deg] absolute right-0"></iframe> </h1>
+            <h1 className="font-bold text-[48px] flex items-center relative w-[30%]  ">Hey there <iframe src="https://lottie.host/embed/4947a3e2-a083-4c17-82be-a2b0c1022af3/0sT4zRxHoK.json" className="w-20 h-20 rotate-[-50deg] absolute right-2"></iframe> </h1>
             <h1 className="font-bold text-[48px]">{greeting}!</h1>
         </div>
     )
