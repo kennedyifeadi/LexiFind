@@ -57,18 +57,30 @@ export const SearchWord = () => {
             </h1>
             <span className='text-[16px] border-2 border-[#6200EA] px-2 py-1 italic rounded-full'>#/ euile /#</span>
           </div>
-          <p>
-            <span></span>
-          </p>
+          <div className='flex flex-col h-max w-full mt-4'>
+            <p>
+            This method is excellent for high-quality, interactive animations and is generally more efficient than embedding complex animations directly as video or GIF files.
+            </p>
+            <span className='italic text-[15px] text-[#6200EA] flex justify-end items-center w-full h-max'> <span className='font-bold '>• </span> latin origin <span className='font-bold'> •</span></span>
+          </div>
         </div>
         <div className="flex-1 h-[300px] p-4">
           <div className="flex justify-between w-full">
-            <h1 className='text-[18px]'>Use Case</h1>
+            <h1 className='text-[18px] font-bold'>Use Case</h1>
             <span className='text-[16px] border-2 border-[#6200EA] py-1 px-2 rounded-full'>Verb </span>
           </div>
-          <div className="flex flex-col w-full h-max">
-            <p></p>
-            <p></p>
+          <div className="flex flex-col w-full h-max mt-4">
+            <ul>
+              <li>
+                <span className='font-bold'>•</span> This method is excellent for high-quality, interactive animations and is generally more efficient than embedding complex animations directly as video or GIF files.
+              </li>
+              <li>
+                <span className='font-bold'>•</span> This method is excellent for high-quality, interactive animations and is generally more efficient than embedding complex animations directly as video or GIF files.
+              </li>
+              <li>
+                <span className='font-bold'>•</span> This method is excellent for high-quality, interactive animations and is generally more efficient than embedding complex animations directly as video or GIF files.
+              </li>
+            </ul>
           </div>
         </div>
       </div>
