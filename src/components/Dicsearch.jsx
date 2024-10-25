@@ -6,19 +6,13 @@ export const SearchWord = () => {
   
   // State to track the current placeholder index
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
-  const [isFading, setIsFading] = useState(false); // Control fading effect
 
   useEffect(() => {
     const changePlaceholder = () => {
-      // Trigger fade-out animation
-      setIsFading(true);
       
       setTimeout(() => {
-        // After fade-out, change the placeholder text
         setCurrentPlaceholder((prevIndex) => (prevIndex + 1) % placeholderTexts.length);
         
-        // Trigger fade-in animation
-        setIsFading(false);
       }, 500); // 500ms fade-out duration
     };
 
@@ -27,24 +21,22 @@ export const SearchWord = () => {
 
     return () => clearInterval(intervalId); // Clean up the interval on component unmount
   });
+  const display = ()=>{
+    console.log("displayed");
+};
 
   return (
-    <div>
+    <div className='flex felx-col w-full h-max z-20'>
       <div className="w-full px-4 h-max flex gap-4">
-        {/* Input field */}
+
         <input
           type="text"
           name="searchWord"
-          className="w-[80%] h-[50px] border-2 outline-none border-[#6200EA] px-4 italic rounded-full"
           placeholder={placeholderTexts[currentPlaceholder]}
-          style={{
-            transition: 'color 0.5s ease', // Smooth transition for text color (for effect)
-            color: isFading ? 'transparent' : 'black' // Fade out/in placeholder by changing color
-          }}
+          className={`w-[80%] h-[50px] border-2 outline-none border-[#6200EA] px-4 italic rounded-full `}
         />
         
-        {/* Search button */}
-        <button className="px-2 rounded-full text-white bg-[#FF5722] text-[20px] w-[12%]">Search</button>
+        <span className="rounded-full flex items-center justify-center text-white cursor-pointer hover:bg-[#ff5622e0] duration-500 bg-[#FF5722] h-[50px] text-[20px] w-[12%]" onClick={display}>Search</span>
       </div>
     </div>
   );
