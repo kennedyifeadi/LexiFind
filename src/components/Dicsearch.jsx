@@ -26,7 +26,7 @@ export const SearchWord = () => {
     const intervalId = setInterval(changePlaceholder, 3000);
 
     return () => clearInterval(intervalId); // Clean up the interval on component unmount
-  }, []);
+  });
 
   return (
     <div>
