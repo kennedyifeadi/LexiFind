@@ -14,7 +14,12 @@ export const SearchWord = () => {
   const [audio, setAudio] = useState([]);
 
 
-        useEffect(() => {console.log(definitions)}, [definitions])
+        useEffect(() => {
+          console.log(definitions) 
+          console.log(examples)
+          console.log(audio)
+          console.log(partOfSpeech)
+        }, [definitions, examples, audio, partOfSpeech])
         useEffect(() => {console.log(transcriptions)}, [transcriptions])
 
   const handleSearch = useCallback((e) => {
@@ -47,9 +52,14 @@ const handleChange = (e) =>{
         );
 
         const wordTranscriptions = response.data.flatMap(e =>(e.phonetics.map(p => p.text)));
+        const wordExamples = response.data.flatMap(e => (e.meanings.flatMap(m => m.definitions.map(d => d.example))));
+        const wordAudio = response.data.flatMap(e => (e.phonetics.map(p => p.audio)));
+        const partOfSpeech = response.data.flatMap(e => (e.meanings.map(m => m.partOfSpeech)));
 
+        setExamples(wordExamples);
+        setAudio(wordAudio);
+        setPartOfSpeech(partOfSpeech);
         setTranscriptions(wordTranscriptions);
-
         setDefinitions(wordDefinitions)
 
 
