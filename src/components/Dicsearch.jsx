@@ -1,6 +1,70 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import axios from 'axios';
 
 export const SearchWord = () => {
+  const [searchParams] = useSearchParams();
+  const searchWord = searchParams.get('q') || '';
+  const [word, setWord] = useState("");
+  const navigate = useNavigate();
+  const [definitions, setDefinitions] = useState([]);
+  const [transcriptions, setTranscriptions] = useState([]);
+  const [examples, setExamples] = useState([]);
+  const [partOfSpeech, setPartOfSpeech] = useState([]);
+  const [audio, setAudio] = useState([]);
+
+
+        useEffect(() => {console.log(definitions)}, [definitions])
+        useEffect(() => {console.log(transcriptions)}, [transcriptions])
+
+  const handleSearch = useCallback((e) => {
+    e.preventDefault();
+    if (word) {
+      navigate(`/?q=${word}`, { replace: true });
+    }
+  }, [word, navigate]);
+
+  // useEffect(()=> console.log(searchWord), [searchWord])
+  
+
+const handleChange = (e) =>{
+  setWord(e.target.value)
+  navigate(`/?q=${e.target.value}`, { replace: true });
+}
+
+
+
+
+  useEffect(() => {
+    const fetchDictionary = async () => {
+      try {
+        const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/beautiful`);
+
+        const wordDefinitions = response.data.flatMap(entry => 
+          entry.meanings.flatMap(meaning => 
+            meaning.definitions.map(def => def.definition)
+          )
+        );
+
+        const wordTranscriptions = response.data.flatMap(e =>(e.phonetics.map(p => p.text)));
+
+        setTranscriptions(wordTranscriptions);
+
+        setDefinitions(wordDefinitions)
+
+
+      } catch (error) {
+        console.error(error);
+        
+      }
+    };
+    fetchDictionary();
+  }, [searchWord]);
+
+
+
+
+
   // Array of placeholder texts
   const placeholderTexts = ["Search Word...", "Search Phrase...", "Search Idiom..."];
   
@@ -12,7 +76,6 @@ export const SearchWord = () => {
       
       setTimeout(() => {
         setCurrentPlaceholder((prevIndex) => (prevIndex + 1) % placeholderTexts.length);
-        
       }, 500); // 500ms fade-out duration
     };
 
@@ -25,16 +88,20 @@ export const SearchWord = () => {
   return (
     <div className="flex flex-col w-full max-h-[50%] h-max z-20">
       <div className="w-full px-4 h-max flex gap-4">
+        <form onSubmit={handleSearch} className='w-full px-4 h-max flex gap-4'>
         <input
           type="text"
           name="searchWord"
+          value={word}
+          onChange={handleChange}
           placeholder={placeholderTexts[currentPlaceholder]}
           className={`w-[80%] h-[50px] border-2 outline-none border-[#6200EA] px-4 italic rounded-full `}
         />
 
-        <span className="rounded-full flex items-center  justify-center text-white cursor-pointer hover:shadow-[0px_0px_5px_#0000008a] duration-500 bg-[#FF5722] h-[50px] text-[20px] w-[12%]">
+        <button className="rounded-full flex items-center  justify-center text-white cursor-pointer hover:shadow-[0px_0px_5px_#0000008a] duration-500 bg-[#FF5722] h-[50px] text-[20px] w-[12%]">
           Search
-        </span>
+        </button>
+        </form>
       </div>
       <div className="w-full max-h-[300px] h-[300px] flex ">
         <div className="flex-1 flex flex-col h-[300px] p-4 before:w-[2px] before:h-[80%] relative before:absolute before:top-[5%] before:right-0 before:bg-[#e7d6de] ">
