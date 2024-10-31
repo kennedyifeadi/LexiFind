@@ -10,24 +10,18 @@ export const SearchWord = () => {
   const [definitions, setDefinitions] = useState([]);
   const [transcriptions, setTranscriptions] = useState([]);
   const [examples, setExamples] = useState([]);
-  const [partOfSpeech, setPartOfSpeech] = useState([]);
   const [audio, setAudio] = useState([]);
 
 
-        useEffect(() => {
-          console.log(definitions) 
-          console.log(examples)
-          console.log(audio)
-          console.log(partOfSpeech)
-        }, [definitions, examples, audio, partOfSpeech])
-        useEffect(() => {console.log(transcriptions)}, [transcriptions])
+        // useEffect(() => {
+        //   console.log(definitions) 
+        //   console.log(examples)
+        //   console.log(audio)
+        //   console.log(partOfSpeech)
+        // }, [definitions, examples, audio, partOfSpeech])
+        // useEffect(() => {console.log(transcriptions)}, [transcriptions])
 
-  const handleSearch = useCallback((e) => {
-    e.preventDefault();
-    if (word) {
-      navigate(`/?q=${word}`, { replace: true });
-    }
-  }, [word, navigate]);
+
 
   // useEffect(()=> console.log(searchWord), [searchWord])
   
@@ -39,40 +33,50 @@ const handleChange = (e) =>{
 
 
 
+  const fetchDictionary = async (query) => {
+    try {
+      const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`);
 
-  useEffect(() => {
-    const fetchDictionary = async () => {
-      try {
-        const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`);
+      const wordDefinitions = response.data.flatMap(entry => 
+        entry.meanings.flatMap(meaning => 
+          meaning.definitions.map(def => ({
+            definition: def.definition,
+            partOfSpeech: meaning.partOfSpeech
+          }))
+        )
+      );
 
-        const wordDefinitions = response.data.flatMap(entry => 
-          entry.meanings.flatMap(meaning => 
-            meaning.definitions.map(def => def.definition)
-          )
-        );
+      const wordTranscriptions = response.data.flatMap(e =>(e.phonetics.map(p => p.text)));
+      const wordExamples = response.data.flatMap(e => e.meanings.flatMap(m => m.definitions.map(d => d.example)));
+      const wordAudio = response.data.flatMap(e => (e.phonetics.map(p => p.audio)));
 
-        const wordTranscriptions = response.data.flatMap(e =>(e.phonetics.map(p => p.text)));
-        const wordExamples = response.data.flatMap(e => e.meanings.flatMap(m => m.definitions.map(d => d.example)));
-        const wordAudio = response.data.flatMap(e => (e.phonetics.map(p => p.audio)));
-        const partOfSpeech = response.data.flatMap(e => (e.meanings.map(m => m.partOfSpeech)));
-
-        setExamples(wordExamples.filter(Boolean));
-        setAudio(wordAudio.filter(Boolean));
-        setPartOfSpeech(partOfSpeech.filter(Boolean));
-        setTranscriptions(wordTranscriptions.filter(Boolean));
-        setDefinitions(wordDefinitions.filter(Boolean))
-
-
-      } catch (error) {
-        console.error(error);
-        
-      }
-    };
-    fetchDictionary();
-  }, [searchWord]);
+      setExamples(wordExamples.filter(Boolean));
+      setAudio(wordAudio.filter(Boolean));
+      setTranscriptions(wordTranscriptions.filter(Boolean));
+      setDefinitions(wordDefinitions.filter(Boolean))
 
 
+    } catch (error) {
+      console.error(error);
+      
+    }
+  };
+  
+  const groupedDefinitions = definitions.reduce((acc, { definition, partOfSpeech }) => {
+    if (!acc[partOfSpeech]) {
+      acc[partOfSpeech] = [];
+    }
+    acc[partOfSpeech].push(definition);
+    return acc;
+  }, {});
 
+  const handleSearch = useCallback((e) => {
+    e.preventDefault();
+    if (word) {
+      navigate(`/?q=${word}`, { replace: true });
+      fetchDictionary(word);
+    }
+  }, [word, navigate]);
 
 
   // Array of placeholder texts
@@ -132,12 +136,20 @@ const handleChange = (e) =>{
               />
             </svg>
             </h1>
-            <span className='text-[16px] border-2 border-[#6200EA] px-2 py-1 italic rounded-full'>#/ euile /#</span>
+            <span className='text-[16px] border-2 border-[#6200EA] px-2 py-1 italic rounded-full'>{transcriptions[0]}</span>
           </div>
-          <div className='flex flex-col h-max w-full mt-4'>
-            <p>
-            This method is excellent for high-quality, interactive animations and is generally more efficient than embedding complex animations directly as video or GIF files.
-            </p>
+          <div className='flex flex-col h-max w-full mt-4 gap-5 overflow-y-auto'>
+            {Object.entries(groupedDefinitions).map(([partOfSpeech, defs]) => (
+              <div key={partOfSpeech}>
+                <h3 className="font-semibold mt-4">{partOfSpeech.charAt(0).toUpperCase() + partOfSpeech.slice(1)}</h3>
+                {defs.map((definition, index) => (
+                  <div key={index}>
+                    <p>{defs.length > 1 ? <span className='text-[#6200EA] text-[20px]'>•</span> : ''}{definition}</p>
+                    {index < defs.length - 1 && <hr />} {/* Horizontal line after each definition */}
+                  </div>
+                ))}
+              </div>
+            ))}
             <span className='italic text-[15px] text-[#6200EA] flex justify-end items-center w-full h-max'> <span className='font-bold '>• </span> latin origin <span className='font-bold'> •</span></span>
           </div>
         </div>
