@@ -11,6 +11,7 @@ export const SearchWord = () => {
   const [transcriptions, setTranscriptions] = useState([]);
   const [examples, setExamples] = useState([]);
   const [audio, setAudio] = useState([]);
+  const [wordExist, setWordExist] = useState(true);
   const audioRef = useRef(null); // Reference for the audio element
 
   const handleChange = (e) => {
@@ -50,7 +51,7 @@ export const SearchWord = () => {
       setTranscriptions(wordTranscriptions.filter(Boolean));
       setDefinitions(wordDefinitions.filter(Boolean))
     } catch (error) {
-      console.error(error);
+      setWordExist(false);
     }
   };
 
@@ -75,6 +76,7 @@ export const SearchWord = () => {
     if (word) {
       navigate(`/?q=${word}`, { replace: true });
       fetchDictionary(word);
+      setWordExist(true)
     }
   }, [word, navigate]);
 
@@ -98,6 +100,7 @@ export const SearchWord = () => {
     }
   };
 
+
   return (
     <div className="flex flex-col w-full max-h-[50%] h-max z-20">
       <div className="w-full px-4 h-max flex gap-4">
@@ -119,7 +122,11 @@ export const SearchWord = () => {
         <div className="flex-1 flex flex-col h-[300px] p-4 before:w-[2px] before:h-[80%] relative before:absolute before:top-[5%] before:right-0 before:bg-[#e7d6de] ">
           <div className='flex w-full justify-between items-center'>
             <h1 className='font-bold text-[18px] flex justify-center items-center gap-2 capitalize'>
-              {word || 'Word'}
+              {wordExist ?
+              word || 'Word'
+              :
+              <span className='text-[red]'>{word}</span>
+              }
               <svg
                 onClick={playAudio}
                 xmlns="http://www.w3.org/2000/svg"
@@ -138,11 +145,16 @@ export const SearchWord = () => {
               <audio ref={audioRef} src={audio[0]} className="hidden" />
             </h1>
             <span className='text-[16px] border-2 border-[#6200EA] px-2 py-1 italic rounded-full'>
-              {transcriptions && transcriptions.length > 0 ? transcriptions[0] : '/##/'}
+              {wordExist ?
+              transcriptions && transcriptions.length > 0 ? transcriptions[0] : '/##/'
+              :
+              <span className=' text-[red] italic'>#not found#</span>
+              }
             </span>
           </div>
           <div className='flex flex-col h-max w-full m-4 gap-5 overflow-y-auto'>
-            {Object.entries(groupedDefinitions).map(([partOfSpeech, defs]) => (
+            {wordExist ? 
+            Object.entries(groupedDefinitions).map(([partOfSpeech, defs]) => (
               <div key={partOfSpeech}>
                 <h3 className="font-semibold mt-4">
                   {partOfSpeech.charAt(0).toUpperCase() + partOfSpeech.slice(1)}
@@ -154,7 +166,10 @@ export const SearchWord = () => {
                   </div>
                 ))}
               </div>
-            ))}
+            ))
+            : 
+            <span className='text-[red] flex justify-center items-center font-bold capitalize'>not found</span>
+          }
             <span className='italic text-[15px] text-[#6200EA] flex justify-end items-center w-full h-max'> 
               <span className='font-bold '>• </span> latin origin <span className='font-bold'> •</span>
             </span>
@@ -166,7 +181,8 @@ export const SearchWord = () => {
             <span className='text-[16px] border-2 border-[#6200EA] py-1 px-2 rounded-full'>Verb </span>
           </div>
           <div className="flex flex-col w-full h-max mt-4 overflow-y-auto">
-            {Object.entries(groupedExamples).map(([partOfSpeech, examples]) => (
+            {wordExist ?
+            Object.entries(groupedExamples).map(([partOfSpeech, examples]) => (
               <div key={partOfSpeech}>
                 <h3 className="font-bold text-lg">{partOfSpeech}</h3>
                 <ul className="pl-4">
@@ -178,7 +194,10 @@ export const SearchWord = () => {
                   ))}
                 </ul>
               </div>
-            ))}
+            ))
+            :
+            <span className='text-[red] flex justify-center items-center font-bold capitalize'>Not Found</span>
+          }
           </div>
         </div>
       </div>
