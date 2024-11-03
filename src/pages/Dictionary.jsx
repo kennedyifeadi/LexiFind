@@ -1,8 +1,8 @@
 import { Greetings } from "../components/Greetings"
-import { Dailyword } from "../components/Dailyword"
 import { SearchWord } from "../components/Dicsearch"
 import { Player } from '@lottiefiles/react-lottie-player';
 import { motion } from "framer-motion"
+import { Dailyword } from "../components/Dailyword";
 
 
 export const Dictionary = () => {

@@ -135,7 +135,7 @@ export const SearchWord = () => {
             placeholder={placeholderTexts[currentPlaceholder]}
             className={`w-[90%] h-[50px] border-2 outline-none border-[#6200EA] px-4 italic rounded-full `}
           />
-          <button className="rounded-full ease-in-out flex items-center outline-none  justify-center text-white cursor-pointer hover:shadow-[0px_0px_5px_#0000008a] duration-500 bg-[#FF5722] h-[50px] text-[20px] w-[12%]">
+          <button className="rounded-full ease-in-out flex items-center outline-none active:scale-90 justify-center text-white cursor-pointer duration-300 bg-[#FF5722] h-[50px] text-[20px] w-[12%]">
             Search
           </button>
         </form>
@@ -255,23 +255,6 @@ export const SearchWord = () => {
                 not found
               </span>
             )}
-            {/* {wordExist ? 
-            Object.entries(groupedDefinitions).map(([partOfSpeech, defs]) => (
-              <div key={partOfSpeech}>
-                <h3 className="font-semibold mt-4">
-                  {partOfSpeech.charAt(0).toUpperCase() + partOfSpeech.slice(1)}
-                </h3>
-                {defs.map((definition, index) => (
-                  <div key={index}>
-                    <p>{defs.length > 1 ? <span className='text-[#6200EA] text-[20px]'>•</span> : ''}{definition}</p>
-                    {index < defs.length - 1 && <hr />}
-                  </div>
-                ))}
-              </div>
-            ))
-            : 
-            <span className='text-[red] flex justify-center items-center font-bold capitalize'>not found</span>
-          } */}
             <span className="italic text-[15px] text-[#6200EA] flex justify-end items-center w-full h-max">
               <span className="font-bold ">• </span> latin origin{" "}
               <span className="font-bold"> •</span>

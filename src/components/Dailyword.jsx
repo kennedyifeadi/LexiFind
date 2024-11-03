@@ -1,3 +1,5 @@
+
+
 export const Dailyword = () =>{
     return(
         <div className="flex flex-col gap-2 w-full h-[20%] px-6 z-20">
