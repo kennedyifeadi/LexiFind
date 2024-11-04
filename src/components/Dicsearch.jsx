@@ -167,34 +167,21 @@ export const SearchWord = () => {
               <audio ref={audioRef} src={audio[0]} className="hidden" />
             </h1>
             <span className="text-[16px] border-2 border-[#6200EA] px-2 py-1 italic rounded-full">
-              {
-              isLoading 
-              ? 
-              wordExist 
-              ?
-              (
-                <div className="flex justify-center items-center w-full h-full">
-                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-[#6200EA]"></div>
-                </div>
-              ) 
-              :
-              (
-                <span className=" text-[red] italic"># not found #</span>
-              )
-              : 
-              wordExist 
-              ? 
-              (
+              {isLoading ? (
+                wordExist ? (
+                  <div className="flex justify-center items-center w-full h-full">
+                    <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-[#6200EA]"></div>
+                  </div>
+                ) : (
+                  <span className=" text-[red] italic"># not found #</span>
+                )
+              ) : wordExist ? (
                 transcriptions && transcriptions.length > 0 ? (
                   <span># {transcriptions[0]} #</span>
-                ) 
-                :
-                 (
+                ) : (
                   "/##/"
                 )
-              ) 
-              : 
-              (
+              ) : (
                 <span className=" text-[red] italic"># not found #</span>
               )}
             </span>
@@ -204,31 +191,22 @@ export const SearchWord = () => {
               isLoading ? "overflow-hidden" : "overflow-y-auto"
             }`}
           >
-            {
-            isLoading 
-            ? 
-            wordExist 
-            ?
-            (
-              <Player
-                src="https://lottie.host/9f110dcf-ff4f-4cd9-8c1b-e6f3b8a78983/GzKZe7Tgo3.json"
-                background="transparent"
-                speed={1}
-                loop
-                autoplay
-                className="w-[200px] h-[200px] mx-auto"
-              />
-            )
-            :
-            (
-              <span className="text-[red] flex justify-center items-center font-bold capitalize">
-                not found
-              </span>
-            )
-             : 
-             wordExist 
-             ? 
-             (
+            {isLoading ? (
+              wordExist ? (
+                <Player
+                  src="https://lottie.host/9f110dcf-ff4f-4cd9-8c1b-e6f3b8a78983/GzKZe7Tgo3.json"
+                  background="transparent"
+                  speed={1}
+                  loop
+                  autoplay
+                  className="w-[200px] h-[200px] mx-auto"
+                />
+              ) : (
+                <span className="text-[red] flex justify-center items-center font-bold capitalize">
+                  not found
+                </span>
+              )
+            ) : wordExist ? (
               Object.entries(groupedDefinitions).map(([partOfSpeech, defs]) => (
                 <div key={partOfSpeech}>
                   <h3 className="font-semibold mt-4">
@@ -269,31 +247,22 @@ export const SearchWord = () => {
             </span>
           </div>
           <div className="flex flex-col w-full h-max mt-4 overflow-y-auto">
-          {
-            isLoading 
-            ? 
-            wordExist 
-            ?
-            (
-              <Player
-                src="https://lottie.host/9f110dcf-ff4f-4cd9-8c1b-e6f3b8a78983/GzKZe7Tgo3.json"
-                background="transparent"
-                speed={1}
-                loop
-                autoplay
-                className="w-[200px] h-[200px] mx-auto"
-              />
-            )
-            :
-            (
-              <span className="text-[red] flex justify-center items-center font-bold capitalize">
-                not found
-              </span>
-            )
-             : 
-             wordExist 
-             ? 
-             (
+            {isLoading ? (
+              wordExist ? (
+                <Player
+                  src="https://lottie.host/9f110dcf-ff4f-4cd9-8c1b-e6f3b8a78983/GzKZe7Tgo3.json"
+                  background="transparent"
+                  speed={1}
+                  loop
+                  autoplay
+                  className="w-[200px] h-[200px] mx-auto"
+                />
+              ) : (
+                <span className="text-[red] flex justify-center items-center font-bold capitalize">
+                  not found
+                </span>
+              )
+            ) : wordExist ? (
               Object.entries(groupedExamples).map(
                 ([partOfSpeech, examples]) => (
                   <div key={partOfSpeech}>

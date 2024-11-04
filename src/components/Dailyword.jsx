@@ -1,37 +1,11 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react';
+import { useWordOfDay } from '../hooks/useWordOfDay';
 
 export const Dailyword = () =>{
-    const [randomWord, setRandomWord] = useState("");
     const [wordMeaning, setWordMeaning] = useState("");
     const [wordTranscription, setWordTranscrpition] = useState('');
-
-        useEffect(() => {
-            const runRandomWord = async ()=>{
-                const now = new Date(); 
-                const lastRun = localStorage.getItem("lastRun");
-                const lastRunDate = lastRun ? new Date(lastRun) : null;
-                const storedWord = localStorage.getItem('word');
-                if (storedWord) {
-                    setRandomWord(storedWord);
-                }
-
-
-                if(!lastRunDate || (now - lastRunDate) >=  24*60*60*1000){
-                        try {
-                            const response = await axios.get("https://random-word-api.herokuapp.com/word");
-                            const word = response.data[0];
-                            setRandomWord(word)
-                            localStorage.setItem('lastRun', now);
-                            localStorage.setItem('word', word);
-                        } catch (error) {
-                            console.log(error)
-                        }
-                }
-            }
-            runRandomWord();
-        },[randomWord])
-
+    const {wordOfDay: randomWord} = useWordOfDay();
 
         useEffect(() => {
             const fetchWordDefinition = async ()=>{
