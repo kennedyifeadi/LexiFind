@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
 import axios from "axios";
-import { div } from "framer-motion/client";
 
 export const SearchWord = () => {
   const [searchParams] = useSearchParams();
