@@ -28,8 +28,8 @@ export const Dailyword = () =>{
 
 
     return(
-        <div className="flex flex-col gap-2 w-full mb-5 h-[20%] px-6 z-20">
-            <h1 className="font-bold text-[24px]"> <span className="text-[#6200EA]">Word</span> of the <span className="text-[#FF5722]">day</span>!</h1>
+        <div className="flex flex-col gap-2 w-full mb-5 h-max px-4 md:px-6 z-20">
+            <h1 className="font-bold text-[18px] md:text-[24px]"> <span className="text-[#6200EA]">Word</span> of the <span className="text-[#FF5722]">day</span>!</h1>
             <div className="flex gap-5">
                 <h1 className="font-bold text-[18px] capitalize">{randomWord}</h1>
                 <span className="text-[16px] border-2 border-[#6200EA] px-2 rounded-full"># <i>{wordTranscription}</i> #</span>

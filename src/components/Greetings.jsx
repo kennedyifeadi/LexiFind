@@ -25,7 +25,7 @@ export const Greetings = () => {
                     className="md:w-20 md:h-20 w-12 h-12 md:left-[15.2rem] left-[7.2rem]  rotate-[-50deg] absolute top-[-10px] "
                 />
             </h1>
-            <h1 className="font-bold text-[36px] md:text-[48px]">Good <span className="text-[#FF5722]">{greeting}!</span></h1>
+            <h1 className="font-bold text-[30px] md:text-[48px]">Good <span className="text-[#FF5722]">{greeting}!</span></h1>
         </div>
     )
 }

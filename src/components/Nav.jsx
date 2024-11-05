@@ -8,14 +8,14 @@ import { motion } from "framer-motion";
 
 export const Nav = () => {
   return (
-    <div className="md:w-[18%] w-[50px] h-full shadow-[0px_0px_5px_#00000031]">
+    <div className="md:w-[18%] w-[14%] h-full shadow-[0px_0px_5px_#00000031]">
       <nav className="flex flex-col items-center justify-between pt-4 bg-[#FFFFFF] w-full h-full">
         <div className="text-[#6200EA] md:block hidden font-bold text-[36px]">Lexi<span className="text-[#FF5722]">Find</span></div>
         <div className="md:hidden block text-[#6200EA] font-bold text-[36px] ">L<span className="text-[#FF5722]">F</span></div>
         <div className="w-full h-[40%] mb-40">
           <ul className="flex flex-col w-full h-full justify-around items-center md:px-4">
 
-            <li className="text-[#333333] w-full px-[0.3rem] md:px-0 text-[24px] md:text-[16px]">
+            <li className="text-[#333333] w-full flex md:block justify-center md:px-0 text-[24px] md:text-[16px]">
               <NavLink
                 to="/"
               >
@@ -32,7 +32,7 @@ export const Nav = () => {
                 )}
               </NavLink>
             </li>
-            <li className="text-[#333333] w-full px-[0.3rem] md:px-0 text-[24px] md:text-[16px]">
+            <li className="text-[#333333] w-full flex md:block justify-center md:px-0 text-[24px] md:text-[16px]">
               <NavLink
                 to="/translator"
               >
@@ -49,7 +49,7 @@ export const Nav = () => {
                 )}
               </NavLink>
             </li>
-            <li className="text-[#333333] w-full px-[0.3rem] md:px-0 text-[24px] md:text-[16px]">
+            <li className="text-[#333333] w-full flex md:block justify-center md:px-0 text-[24px] md:text-[16px]">
               <NavLink
                 to="/thesaurus"
               >
@@ -67,7 +67,7 @@ export const Nav = () => {
                 )}
               </NavLink>
             </li>
-            <li className="text-[#333333] w-full px-[0.3rem] md:px-0 text-[24px] md:text-[16px]">
+            <li className="text-[#333333] w-full flex md:block justify-center md:px-0 text-[24px] md:text-[16px]">
               <NavLink
                 to="/bookmarks"
               >
