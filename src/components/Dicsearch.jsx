@@ -123,25 +123,25 @@ export const SearchWord = () => {
   };
 
   return (
-    <div className="flex flex-col w-full max-h-[50%] h-max z-20">
-      <div className="w-full px-4 h-max flex gap-4">
-        <form onSubmit={handleSearch} className="w-full h-max flex gap-4">
+    <div className="flex flex-col relative w-full overflow-y-auto md:max-h-[50%] h-max z-20">
+      <div className="w-full sticky top-0 z-30  px-4 h-max flex gap-4">
+        <form onSubmit={handleSearch} className="w-full h-max flex bg-white gap-4">
           <input
             type="text"
             name="searchWord"
             value={word}
             onChange={handleChange}
             placeholder={placeholderTexts[currentPlaceholder]}
-            className={`w-[90%] h-[50px] border-2 outline-none border-[#6200EA] px-4 italic rounded-full `}
+            className={`w-[70%] md:w-[90%] h-[40px] md:h-[50px] border-2 outline-none border-[#6200EA] px-4 italic rounded-full `}
           />
-          <button className="rounded-full ease-in-out flex items-center outline-none active:scale-90 justify-center text-white cursor-pointer duration-300 bg-[#FF5722] h-[50px] text-[20px] w-[12%]">
+          <button className="rounded-full ease-in-out flex items-center outline-none active:scale-90 justify-center text-white cursor-pointer duration-300 bg-[#FF5722] h-[40px] md:h-[50px] text:[18px] md:text-[20px] w-[30%] md:w-[12%]">
             Search
           </button>
         </form>
       </div>
-      <div className="w-full max-h-[300px] h-[300px] flex ">
-        <div className="flex-1 flex flex-col h-[300px] p-4 before:w-[2px] before:h-[80%] relative before:absolute before:top-[5%] before:right-0 before:bg-[#e7d6de] ">
-          <div className="flex w-full justify-between items-center">
+      <div className="w-full h-max md:max-h-[300px] md:h-[300px] flex md:flex-row flex-col ">
+        <div className="flex-1 flex flex-col h-max md:h-[300px] p-4 md:before:w-[2px] md:before:h-[80%] relative md:before:absolute md:before:top-[5%] md:before:right-0 md:before:bg-[#e7d6de] ">
+          <div className="flex w-full justify-between sticky top-0 items-center">
             <h1 className="font-bold text-[18px] flex justify-center items-center gap-2 capitalize">
               {wordExist ? (
                 word || "Word"
@@ -165,7 +165,7 @@ export const SearchWord = () => {
               </svg>
               <audio ref={audioRef} src={audio[0]} className="hidden" />
             </h1>
-            <span className="text-[16px] border-2 border-[#6200EA] px-2 py-1 italic rounded-full">
+            <span className="text-[16px] h-[30px] border-2 border-[#6200EA] flex justify-center items-center px-2 py-1 italic rounded-full">
               {isLoading ? (
                 wordExist ? (
                   <div className="flex justify-center items-center w-full h-full">
@@ -201,8 +201,8 @@ export const SearchWord = () => {
                   className="w-[200px] h-[200px] mx-auto"
                 />
               ) : (
-                <span className="text-[red] flex justify-center items-center font-bold capitalize">
-                  not found
+                <span className=" flex justify-center items-center font-bold capitalize">
+                  Oops! word not found, this is motly caused by network error or wrong spelling
                 </span>
               )
             ) : wordExist ? (
@@ -229,19 +229,20 @@ export const SearchWord = () => {
               ))
             ) : (
               <span className="text-[red] flex justify-center items-center font-bold capitalize">
-                not found
+                Oops! word not found, this is motly caused by network error or wrong spelling
+
               </span>
             )}
-            <span className="italic text-[15px] text-[#6200EA] flex justify-end items-center w-full h-max">
+            <span className="hidden italic text-[15px] text-[#6200EA] md:flex justify-end items-center w-full h-max">
               <span className="font-bold ">• </span> latin origin{" "}
               <span className="font-bold"> •</span>
             </span>
           </div>
         </div>
-        <div className="flex-1 h-[300px] flex flex-col p-4">
+        <div className="flex-1 h-max md:h-[300px] flex flex-col p-4">
           <div className="flex justify-between w-full">
             <h1 className="text-[18px] font-bold">Use Case</h1>
-            <span className="text-[16px] border-2 border-[#6200EA] py-1 px-2 rounded-full">
+            <span className="text-[16px] h-[30px] flex justify-center items-center border-2 border-[#6200EA] py-1 px-2 rounded-full">
               Verb{" "}
             </span>
           </div>
@@ -257,8 +258,9 @@ export const SearchWord = () => {
                   className="w-[200px] h-[200px] mx-auto"
                 />
               ) : (
-                <span className="text-[red] flex justify-center items-center font-bold capitalize">
-                  not found
+                <span className=" flex justify-center items-center font-bold capitalize">
+                  Oops! word not found, this is motly caused by network error or wrong spelling
+
                 </span>
               )
             ) : wordExist ? (
@@ -278,8 +280,9 @@ export const SearchWord = () => {
                 )
               )
             ) : (
-              <span className="text-[red] flex justify-center items-center font-bold capitalize">
-                not found
+              <span className=" flex justify-center items-center font-bold capitalize">
+                Oops! examples not found, this is motly caused by network error or wrong spelling
+
               </span>
             )}
           </div>
