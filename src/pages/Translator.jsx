@@ -2,7 +2,7 @@ import { AiOutlineAudio } from "react-icons/ai";
 
 import { motion } from "framer-motion"
 import { TranslateWriteUp } from "../components/Translate"
-import { TranslateDashboard } from "../components/translateDashboard"
+import { TranslateDashboard } from "../components/TranslateDashboard"
 
 export const Translator = () =>{
     return(
