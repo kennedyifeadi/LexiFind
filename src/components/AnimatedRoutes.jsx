@@ -10,7 +10,7 @@ import { Settings } from "../pages/Settings"
 export const AnimatedRoutes = () => {
   const location = useLocation();
     return (
-        <div className="h-full w-[86%] md:w-[82%]">
+        <div className="h-full w-[86%] absolute right-0 md:w-[82%]">
         <AnimatePresence>
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<Dictionary/>} exact />

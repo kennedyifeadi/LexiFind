@@ -125,7 +125,7 @@ export const SearchWord = () => {
   return (
     <div className="flex flex-col relative w-full overflow-y-auto md:max-h-[50%] h-max z-20">
       <div className="w-full sticky top-0 z-30  px-4 h-max flex gap-4">
-        <form onSubmit={handleSearch} className="w-full h-max flex bg-white gap-4">
+        <form onSubmit={handleSearch} className="w-full h-max flex bg-white gap-4 rounded-full">
           <input
             type="text"
             name="searchWord"

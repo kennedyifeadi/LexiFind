@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 export const Nav = () => {
   return (
-    <div className="md:w-[18%] w-[14%] h-full shadow-[0px_0px_5px_#00000031]">
+    <div className="md:w-[18%] w-[14%] fixed h-[100dvh] md:h-[100dvh] shadow-[0px_0px_5px_#00000031]">
       <nav className="flex flex-col items-center justify-between pt-4 bg-[#FFFFFF] w-full h-full">
         <div className="text-[#6200EA] md:block hidden font-bold text-[36px]">Lexi<span className="text-[#FF5722]">Find</span></div>
         <div className="md:hidden block text-[#6200EA] font-bold text-[36px] ">L<span className="text-[#FF5722]">F</span></div>
