@@ -27,7 +27,6 @@ export const TranslateDashboard = ({ text, icon, title, color }) => {
         <span className="text-gray-600 text-[13px]">{text}</span>
       </div>
     </div>
-    <div className={`absolute bg-black w-[300px] duration-500 ease-in-out h-[300px] top-0  ${clicked ? "right-[0px]" : "right-[-1300px]"}`}></div>
     </div>
   );
 };
