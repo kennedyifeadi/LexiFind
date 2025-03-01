@@ -202,7 +202,7 @@ export const SearchWord = () => {
                 />
               ) : (
                 <span className=" flex justify-center items-center font-bold capitalize">
-                  Oops! word not found, this is motly caused by network error or wrong spelling
+                  Oops! word not found, this is mostly caused by network error or wrong spelling
                 </span>
               )
             ) : wordExist ? (
@@ -229,7 +229,7 @@ export const SearchWord = () => {
               ))
             ) : (
               <span className="text-[red] flex justify-center items-center font-bold capitalize">
-                Oops! word not found, this is motly caused by network error or wrong spelling
+                Oops! word not found, this is mostly caused by network error or wrong spelling
 
               </span>
             )}
@@ -259,7 +259,7 @@ export const SearchWord = () => {
                 />
               ) : (
                 <span className=" flex justify-center items-center font-bold capitalize">
-                  Oops! word not found, this is motly caused by network error or wrong spelling
+                  Oops! word not found, this is mostly caused by network error or wrong spelling
 
                 </span>
               )
@@ -281,7 +281,7 @@ export const SearchWord = () => {
               )
             ) : (
               <span className=" flex justify-center items-center font-bold capitalize">
-                Oops! examples not found, this is motly caused by network error or wrong spelling
+                Oops! examples not found, this is mostly caused by network error or wrong spelling
 
               </span>
             )}
