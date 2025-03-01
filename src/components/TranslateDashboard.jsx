@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { TranslateContext } from '../context/translateContext';
 
 export const TranslateDashboard = ({ text, icon, title, color }) => {
-  const [clicked, setClicked] = useState(false);
+  const {isClicked, setIsClicked} = useContext(TranslateContext);
+
   const handleClick = () => {
-    setClicked(!clicked);
+    setIsClicked(!isClicked);
   }
   useEffect(() => {
-    console.log(clicked);
+    console.log(isClicked);
   })
   const colorClass =
     color === "#daf4fe"
