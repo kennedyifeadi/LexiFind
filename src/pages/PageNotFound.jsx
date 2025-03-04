@@ -29,7 +29,7 @@ export const PageNotFound = () =>{
                 <img src={smallImage} alt=""  className="w-[10%] absolute flex top-6 left-[40%] animate-bouncing"/>
                 <img src={moonImage} alt="" className="w-[10%] absolute flex top-[50%] left-[60%] animate-bouncing" />
             </div>
-            <div className="flex relative flex-col justify-center items-center z-30 w-full bg-white gap-2 h-[10%]">
+            <div className="flex relative flex-col justify-center items-center z-30 w-full gap-2 h-[10%]">
                 <p>Go back to the homepage</p>
                 <Link to="/" className="p-2 text-white duration-500 ease-in-out hover:bg-[#6200eadc] flex justify-center items-center rounded-md bg-[#6200EA]">Homepage</Link>
             </div>
