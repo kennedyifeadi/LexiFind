@@ -9,7 +9,7 @@ export const ThesaurusDashboard = ({ids, Title, text, color, icon}) => {
     setId(ids)
   }
   return (
-    <div className='w-[23%] flex flex-col justify-between p-2 bg-white shadow-sm h-[45%] rounded-md active:scale-95 duration-300 cursor-pointer' onClick={handleClick}>
+    <div className='w-[255px] flex flex-col justify-between p-2 bg-white shadow-sm h-[200px] rounded-md active:scale-95 duration-300 cursor-pointer' onClick={handleClick}>
       <div className='flex w-full justify-between items-center'>
         <h1 className='font-bold text-lg'>
           {Title}
