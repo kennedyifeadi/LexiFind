@@ -6,13 +6,13 @@ import { LuScrollText } from "react-icons/lu";
 import { GiSoundWaves } from "react-icons/gi";
 import { useContext, useState } from "react";
 import { TranslateContext } from "../context/TranslateContext";
-import { DashboardContext } from "../context/DashboardContext";
+import { TranslatorDashboardContext } from "../context/TranslatorDashboardContext";
 import {AudioToText} from "../components/translatorCards/AudioToText"
 import {TextToText} from "../components/translatorCards/TextToText"
 import {TextToSpeech} from "../components/translatorCards/TextToSpeech"
 export const Translator = () =>{
     const {isClicked, setIsClicked} = useContext(TranslateContext)
-    const {id} = useContext(DashboardContext)
+    const {id} = useContext(TranslatorDashboardContext)
     const handleClick = () =>{
         setIsClicked(!isClicked);
     }
@@ -52,7 +52,7 @@ export const Translator = () =>{
         exit={{opacity:0}}
         >
             <TranslateWriteUp/>
-            <div className="w-full flex md:flex-row flex-col justify-around gap-4 px-6">
+            <div className="w-full flex md:flex-row flex-col justify-between gap-4 px-6">
                 {translateObject.map((dashboard, index)=>{
                     return (
                             <TranslateDashboard key={index} ids={index} icon={dashboard.icon} text={dashboard.text} title={dashboard.title} color={dashboard.color}/>
