@@ -1,9 +1,9 @@
 import { BrowserRouter } from "react-router-dom"
 import { Nav } from "./components/Nav"
 import { AnimatedRoutes } from "./components/AnimatedRoutes";
-import { TranslateProvider } from "./context/TranslateContext";
 import { TranslatorDashboardProvider } from "./context/TranslatorDashboardContext";
 import { ThesaurusDashboardProvider } from "./context/ThesaurusDashboardContext";
+import { TranslateProvider } from "./context/TranslateContext";
 
 
 function App() {
