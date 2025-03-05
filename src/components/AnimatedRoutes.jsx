@@ -6,8 +6,6 @@ import { Bookmarks } from "../pages/Bookmarks"
 import { PageNotFound } from "../pages/PageNotFound"
 import { AnimatePresence } from "framer-motion"
 import { Settings } from "../pages/Settings"
-// import {TranslateWriteUp} from "./Translate"
-import { Transcription } from "../pages/Transcription"
 
 export const AnimatedRoutes = () => {
   const location = useLocation();
@@ -20,7 +18,6 @@ export const AnimatedRoutes = () => {
                 <Route path="/thesaurus" element={<Thesaurus/>} />
                 <Route path="/bookmarks" element={<Bookmarks/>} />
                 <Route path="/Settings" element={<Settings/>} />
-                <Route path="/translator/:id" element={<Transcription/>} />
                 <Route path="*" element={<PageNotFound/>} /> 
             </Routes>
       </AnimatePresence>
