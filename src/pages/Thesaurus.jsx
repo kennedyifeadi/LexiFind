@@ -1,9 +1,18 @@
 import { motion } from "framer-motion"
 import { ThesaurusDashboard } from "../components/ThesaurusDashboard";
 import { FaEquals, FaBalanceScale, FaVolumeUp, FaSpellCheck, FaFont, FaBookOpen, FaCommentDots, FaAsterisk } from "react-icons/fa";
+import { useContext, useEffect, useState } from "react";
+import { ThesaurusContext } from "../context/thesaurusContext";
+import { ThesaurusDashboardContext } from "../context/ThesaurusDashboardContext";
+
 
 
 export const Thesaurus = () =>{
+  const {isThesaurusClicked, setIsThesaurusClicked} = useContext(ThesaurusContext)
+  const {thesaurusTitle} = useContext(ThesaurusDashboardContext)
+  const handleThesaurusClicked = ()=>{
+    setIsThesaurusClicked(!isThesaurusClicked)
+  }
   const ThesaurusDashboardContent = [
     {
       Title: "Synonyms",
@@ -76,6 +85,19 @@ export const Thesaurus = () =>{
             })
           }
           {/* 1. synomymes 2. anthonmys 3. parts of Speech 4. figure of speech 5. homophones 6. homonyms 7. homographs 8. plindromes */}
+        </div>
+        <div className={`absolute bg-transparent ${isThesaurusClicked ? "top-0 opacity-100 z-[10]" : "top-8 opacity-0 z-[-10]"} duration-700 transition-all ease-in-out right-0 w-[100dvw] h-[100dvh] flex justify-center items-center`}>
+        <div className="w-full h-full bg-[#00000038] absolute top-0 right-0" onClick={handleThesaurusClicked}></div>
+
+          <div className="w-[350px] h-[300px] rounded-md z-10 bg-white shadow-md p-4 max-h-[500px]">
+            <div className="w-full h-[5rem] flex flex-col">
+              <h1 className="text-3xl font-bold w-full text-center">What's Your Word</h1>
+              <span className="text-sm w-full text-center text-gray-400">we'd get you your <span className="text-[#d13434] font-semibold">{thesaurusTitle}</span> before you can spell your name</span>
+            </div>
+            <div className="w-full h-[50px] border">
+
+            </div>
+          </div>
         </div>
       </motion.div>
     );
