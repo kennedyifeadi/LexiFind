@@ -2,18 +2,16 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ThesaurusDashboardContext } from '../context/ThesaurusDashboardContext'
 import { ThesaurusContext } from '../context/thesaurusContext'
 
-export const ThesaurusDashboard = ({ids, Title, text, color, icon}) => {
+export const ThesaurusDashboard = ({ids, Title, text, color, icon, thesaurusFunction}) => {
   const {isThesaurusClicked, setIsThesaurusClicked} = useContext(ThesaurusContext)
-  const {setId, thesaurusTitle, setThesaurusTitle} = useContext(ThesaurusDashboardContext)
-  
+  const {setId, setThesaurusTitle} = useContext(ThesaurusDashboardContext)
+
   const handleClick = () =>{
     setIsThesaurusClicked(!isThesaurusClicked)
     setId(ids)
     setThesaurusTitle(Title)
+    thesaurusFunction()
   }
-  useEffect(()=>{
-    console.log(thesaurusTitle);
-  }, [thesaurusTitle])
 
   return (
     <div className='w-[255px] flex flex-col justify-between p-2 bg-white shadow-sm h-[200px] rounded-md active:scale-75 duration-300 cursor-pointer' onClick={handleClick}>
