@@ -19,7 +19,7 @@ export const Dictionary = () => {
                 speed={1}
                 loop
                 autoplay
-                className="absolute top-[-150px]  right-[-30px] md:right-[50px] w-[50%] h-[45%] "
+                className="absolute top-[-150px] md:top-[-200px] md:w-[100%] md:h-[100%] border right-[-30px] md:right-[-300px] w-[50%] h-[45%] "
             />
             <Greetings />
             <Dailyword />
