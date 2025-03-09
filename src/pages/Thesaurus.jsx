@@ -19,48 +19,80 @@ export const Thesaurus = () =>{
       text: "Words with similar meanings (e.g., happy & joyful).",
       icon: <FaEquals />,
       color: "#daf4fe",
+      thesaurusFunction(){
+        console.log("synonyms")
+        return "synonyms"
+      }
     },
     {
       Title: "Antonyms",
       text: "Words with opposite meanings (e.g., hot & cold).",
       icon: <FaBalanceScale />,
       color: "#f8e5ce",
+      thesaurusFunction(){
+        console.log("antonyms")
+        return "antonyms"
+      }
     },
     {
       Title: "Homophones",
       text: "Words that sound alike but have different meanings and spellings (e.g., bare & bear).",
       icon: <FaVolumeUp />,
       color: "#f8e3f8",
+      thesaurusFunction(){
+        console.log("homophones")
+        return "homophones"
+      }
     },
     {
       Title: "Homonyms",
       text: "Words that have the same spelling and pronunciation but different meanings (e.g., bat [an animal] & bat [used in sports]).",
       icon: <FaSpellCheck />,
       color: "#e8f7da",
+      thesaurusFunction(){
+        console.log("homonyms")
+        return "homonyms"
+      }
     },
     {
       Title: "Homographs",
       text: "Words that are spelled the same but have different pronunciations and meanings (e.g., lead [to guide] & lead [a type of metal]).",
       icon: <FaFont />,
       color: "#fdeed9",
+      thesaurusFunction(){
+        console.log("homographs")
+        return "homographs"
+      }
     },
     {
       Title: "Parts of Speech",
       text: "Categories of words based on their function in a sentence (e.g., noun, verb, adjective).",
       icon: <FaBookOpen />,
       color: "#e3e3fa",
+      thesaurusFunction(){
+        console.log("parts of speech")
+        return "parts of speech"
+      }
     },
     {
       Title: "Figures of Speech",
       text: "Expressions that go beyond literal meaning (e.g., simile, metaphor, personification).",
       icon: <FaCommentDots />,
       color: "#fbe5e5",
+      thesaurusFunction(){
+        console.log("figures of speech")
+        return "figures of speech"
+      }
     },
     {
       Title: "Acronyms",
       text: "Words formed from the first letters of a phrase (e.g., NASA – National Aeronautics and Space Administration).",
       icon: <FaAsterisk />,
       color: "#d9f7f7",
+      thesaurusFunction(){
+        console.log("acronyms")
+        return "acronyms"
+      }
     },
   ];
     return (
@@ -80,7 +112,7 @@ export const Thesaurus = () =>{
           {
             ThesaurusDashboardContent.map((Dashboard, index)=>{
               return(
-                <ThesaurusDashboard key={index} Title={Dashboard.Title} text={Dashboard.text} icon={Dashboard.icon} color={Dashboard.color} ids={index}/>
+                <ThesaurusDashboard key={index} Title={Dashboard.Title} text={Dashboard.text} icon={Dashboard.icon} color={Dashboard.color} ids={index} thesaurusFunction={Dashboard.thesaurusFunction}/>
               )
             })
           }
