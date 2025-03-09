@@ -4,10 +4,9 @@ export const TranslateProvider = ({children}) => {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <div>
-        <TranslateContext.Provider value={{isClicked, setIsClicked}}
-    >
+      <TranslateContext.Provider value={{isClicked, setIsClicked}}>
         {children}
-    </TranslateContext.Provider>
+      </TranslateContext.Provider>
     </div>
   )
 }
