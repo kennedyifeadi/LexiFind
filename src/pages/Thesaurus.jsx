@@ -30,9 +30,7 @@ export const Thesaurus = () =>{
           }
           {/* 1. synomymes 2. anthonmys 3. parts of Speech 4. figure of speech 5. homophones 6. homonyms 7. homographs 8. plindromes */}
         </div>
-        <div className="w-full h-full">
           <ThesaurusModal/>
-        </div>
       </motion.div>
     );
 }
