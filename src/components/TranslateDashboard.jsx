@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
 import { useContext} from 'react';
-import { TranslateContext } from '../context/TranslateContext'
 import { TranslatorDashboardContext } from '../context/TranslatorDashboardContext';
 
 export const TranslateDashboard = ({ids, text, icon, title, color }) => {
-  const {isClicked, setIsClicked} = useContext(TranslateContext);
-  const {setId} = useContext(TranslatorDashboardContext);
+  const {setId, isClicked, setIsClicked} = useContext(TranslatorDashboardContext);
   const handleClick = () => {
     setIsClicked(!isClicked);
     setId(ids)

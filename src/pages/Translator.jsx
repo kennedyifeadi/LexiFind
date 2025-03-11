@@ -4,15 +4,13 @@ import { TranslateDashboard } from "../components/TranslateDashboard"
 import { AiOutlineAudio } from "react-icons/ai"
 import { LuScrollText } from "react-icons/lu";
 import { GiSoundWaves } from "react-icons/gi";
-import { useContext, useState } from "react";
-import { TranslateContext } from "../context/TranslateContext";
+import { useContext} from "react";
 import { TranslatorDashboardContext } from "../context/TranslatorDashboardContext";
 import {AudioToText} from "../components/translatorCards/AudioToText"
 import {TextToText} from "../components/translatorCards/TextToText"
 import {TextToSpeech} from "../components/translatorCards/TextToSpeech"
 export const Translator = () =>{
-    const {isClicked, setIsClicked} = useContext(TranslateContext)
-    const {id} = useContext(TranslatorDashboardContext)
+    const {id, isClicked, setIsClicked} = useContext(TranslatorDashboardContext)
     const handleClick = () =>{
         setIsClicked(!isClicked);
     }
