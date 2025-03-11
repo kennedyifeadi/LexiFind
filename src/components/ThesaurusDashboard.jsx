@@ -1,16 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ThesaurusDashboardContext } from '../context/ThesaurusDashboardContext'
-import { ThesaurusContext } from '../context/thesaurusContext'
 
-export const ThesaurusDashboard = ({ids, Title, text, color, icon, thesaurusFunction}) => {
-  const {isThesaurusClicked, setIsThesaurusClicked} = useContext(ThesaurusContext)
-  const {setId, setThesaurusTitle} = useContext(ThesaurusDashboardContext)
+export const ThesaurusDashboard = ({id, Title, text, color, icon, thesaurusFunction}) => {
+  const {setId} = useContext(ThesaurusDashboardContext)
 
   const handleClick = () =>{
-    setIsThesaurusClicked(!isThesaurusClicked)
-    setId(ids)
-    setThesaurusTitle(Title)
-    thesaurusFunction()
+    setId(id)
   }
 
   return (
