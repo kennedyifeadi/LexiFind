@@ -7,8 +7,8 @@ import { FaExclamationCircle } from "react-icons/fa";
 export const ThesaurusModal = () => {
     const [inputValue, setInputValue] = useState("");
     const [inputErrorMsg, setInputErrorMsg] = useState("");
-    const [termDefinition, setTermDefinition] = useState("");
-    const [termCategory, setTermCategory] = useState("");
+    const [termDefinition, setTermDefinition] = useState([]);
+    const [termCategory, setTermCategory] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
     const { id, setId } = useContext(ThesaurusDashboardContext);
@@ -39,10 +39,10 @@ export const ThesaurusModal = () => {
             return setInputErrorMsg("field cannot be empty");
         }
         setIsLoading(true);
-        await sleep(1000);
+        await sleep(2000);
         setIsLoading(false);
         setIsClicked(true);
-        const { termDefinition, termCategory } = await findThesaurusCard.thesaurusFunction(inputValue);
+        const { termDefinition, termCategory } = await findThesaurusCard.thesaurusFunction(inputValue, 4);
         setTermDefinition(termDefinition);
         setTermCategory(termCategory);
     };
@@ -118,8 +118,25 @@ export const ThesaurusModal = () => {
             )}
           </div>
           <div className="w-full h-[200px] flex flex-col overflow-auto mt-4 border">
-            <h1 className="text-2xl font-bold">{termDefinition}</h1>
-            <p className="text-gray-400 text-[15px]">{termCategory}</p>
+            {isClicked && (
+              <div className="w-full h-full flex flex-col gap-2">
+                {termDefinition.length > 0 ? (
+                  termDefinition.map((term, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="w-full h-[50px] flex justify-between items-center p-2 border-b"
+                      >
+                        <span className="font-bold text-lg">{term}</span>
+                        <span className="text-[#6200EA] font-semibold">
+                          {termCategory[index]}
+                        </span>
+                      </div>
+                    );
+                  })
+                ) : ('')}
+              </div>
+            )}
           </div>
         </div>
       </div>
