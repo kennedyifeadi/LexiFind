@@ -1,6 +1,5 @@
 import axios from "axios";
 import { FaEquals, FaBalanceScale, FaVolumeUp, FaSpellCheck, FaFont, FaBookOpen, FaCommentDots, FaAsterisk } from "react-icons/fa";
-
 export const ThesaurusDashboardContent = [
     {
       id: 1,
@@ -8,21 +7,27 @@ export const ThesaurusDashboardContent = [
       text: "Words with similar meanings (e.g., happy & joyful).",
       icon: <FaEquals />,
       color: "#daf4fe",
-       async thesaurusFunction(word) {
+       async thesaurusFunction(word, noOfResults) {
   try {
     const url = `https://www.stands4.com/services/v2/abbr.php?uid=13169&tokenid=EmUL8KGWlXMfwDrT&term=${word}&format=json`;
     const response = await axios.get(url);
     console.log(response);
     if (response.data.result && response.data.result.length > 0) {
-      const termDefinition = response.data.result[0].definition;
-      const termCategory = response.data.result[0].categoryname;
-    return {termDefinition: termDefinition, termCategory: termCategory}
+        const definitions = [];
+        const categories = [];
+  
+        for (let i = 0; i < Math.min(noOfResults, response.data.result.length); i++) {
+          definitions.push(response.data.result[i].definition);
+          categories.push(response.data.result[i].category);
+        }
+  
+        return { termDefinition: definitions, termCategory: categories };
     } else {
-      return "No definition found.", "";
+        return { termDefinition: ["No definition found."], termCategory: [""] };
     }
   } catch (error) {
     console.error("Error fetching thesaurus data:", error);
-    return "Error fetching thesaurus data", "";
+    return { termDefinition: ["Error fetching thesaurus data"], termCategory: [""] };
   }
 }
     },
