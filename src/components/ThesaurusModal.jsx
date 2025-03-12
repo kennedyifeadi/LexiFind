@@ -7,6 +7,7 @@ import { IoFilterSharp } from "react-icons/io5";
 
 export const ThesaurusModal = () => {
     const [inputValue, setInputValue] = useState("");
+    const [noOfResults, setNoOfResults] = useState(4);
     const [inputErrorMsg, setInputErrorMsg] = useState("");
     const [termDefinition, setTermDefinition] = useState([]);
     const [termCategory, setTermCategory] = useState([]);
@@ -16,6 +17,10 @@ export const ThesaurusModal = () => {
 
     const findThesaurusCard = ThesaurusDashboardContent.find((item) => item.id === id);
     const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    const handleSelectChange = (e)=>{
+        setNoOfResults(e.target.value)
+    }
 
     const handleThesaurusClicked = () => {
         setIsClicked(false);
@@ -29,9 +34,8 @@ export const ThesaurusModal = () => {
         setInputValue(e.target.value);
         setInputErrorMsg("");
     };
-
-    const handleClick = async (e) => {
-        e.preventDefault();
+    
+    const fetchThesaurusData = async () => {
         if (!findThesaurusCard) {
             console.error("Thesaurus card not found!");
             return;
@@ -43,10 +47,21 @@ export const ThesaurusModal = () => {
         await sleep(2000);
         setIsLoading(false);
         setIsClicked(true);
-        const { termDefinition, termCategory } = await findThesaurusCard.thesaurusFunction(inputValue, 4);
+        const { termDefinition, termCategory } = await findThesaurusCard.thesaurusFunction(inputValue, noOfResults);
         setTermDefinition(termDefinition);
         setTermCategory(termCategory);
+    }
+
+    const handleClick = async (e) => {
+        e.preventDefault();
+       fetchThesaurusData()
     };
+
+    useEffect(()=>{
+        if(isClicked){
+            fetchThesaurusData()
+        }
+    }, [noOfResults])
 
     if (!id) return null;
 
@@ -126,35 +141,58 @@ export const ThesaurusModal = () => {
           <div className="w-full h-[200px] flex flex-col mt-4">
             {isClicked && (
               <div className="w-full h-full flex flex-col">
-                <div className="flex w-full h-[25%] mb-4 border">
-                  <div className='w-[80%] h-full flex flex-col'>
-                  <h1 className="font-semibold text-xl capitalize">
-                    {inputValue}
-                  </h1>
-                  <span className="text-[10px] text-gray-400">
-                    yh, before i forget, what's your name?
-                  </span>
+                <div className="flex w-full h-[25%] mb-4">
+                  <div className="w-[70%] h-full flex flex-col">
+                    <h1 className="font-semibold text-xl capitalize">
+                      {inputValue}
+                    </h1>
+                    <span className="text-[10px] text-gray-400">
+                      yh, before i forget, what's your name?
+                    </span>
                   </div>
-                  <div className='flex h-full w-[20%] items-center'>
-                    <IoFilterSharp className='w-5 h-5 text-[#FF5722]'/>
+                  <div className="flex h-full w-[30%] items-center justify-end">
+                    <form class="w-max flex flex-col items-end">
+                      <label
+                        for="noResults"
+                        class="block text-[10px] font-medium text-gray-400 text-center"
+                      >
+                        No of Result
+                      </label>
+                      <div className='flex items-center gap-1.5'>
+                    <IoFilterSharp className="w-4 h-4 text-[#FF5722]" />
+
+                      <select
+                        id="noResults"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg outline-none block w-[40px] p-1"
+                        value={noOfResults}
+                        onChange={handleSelectChange}
+                      >
+                        <option value={4}>4</option>
+                        <option value={5}>5</option>
+                        <option value={6}>6</option>
+                        <option value={7}>7</option>
+                        <option value={8}>8</option>
+                      </select>
+                      </div>
+                    </form>
                   </div>
                 </div>
-                <div className='w-full overflow-auto h-[75%] flex flex-col'>
-                {termDefinition.length > 0
-                  ? termDefinition.map((term, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="w-full h-[50px] flex justify-between items-center p-2 border-b"
-                        >
-                          <span className="font-bold text-lg">{term}</span>
-                          <span className="text-[#6200EA] font-semibold">
-                            {termCategory[index]}
-                          </span>
-                        </div>
-                      );
-                    })
-                  : ""}
+                <div className="w-full overflow-auto h-[75%] flex flex-col">
+                  {termDefinition.length > 0
+                    ? termDefinition.map((term, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="w-full h-[50px] flex justify-between items-center p-2 border-b"
+                          >
+                            <span className="font-bold text-lg">{term}</span>
+                            <span className="text-[#6200EA] font-semibold">
+                              {termCategory[index]}
+                            </span>
+                          </div>
+                        );
+                      })
+                    : ""}
                 </div>
               </div>
             )}
