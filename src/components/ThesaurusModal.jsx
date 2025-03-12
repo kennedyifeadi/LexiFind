@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ThesaurusDashboardContent } from './ThesaurusObject';
 import { ThesaurusDashboardContext } from '../context/ThesaurusDashboardContext';
 import { FaExclamationCircle } from "react-icons/fa";
+import { IoFilterSharp } from "react-icons/io5";
 
 
 export const ThesaurusModal = () => {
@@ -88,7 +89,11 @@ export const ThesaurusModal = () => {
               />
               <button className="w-[30%] h-full bg-[#6200EA] active:scale-75 duration-300 rounded-md font-semibold text-white px-2">
                 {isLoading ? (
-                    <div className={` ${isLoading ? "flex" : "hidden"} justify-center items-center w-full h-full`}>
+                  <div
+                    className={` ${
+                      isLoading ? "flex" : "hidden"
+                    } justify-center items-center w-full h-full`}
+                  >
                     <svg
                       aria-hidden="true"
                       class={`w-5 h-5 text-gray-200 animate-spin dark:text-[#6200EA] fill-white`}
@@ -105,9 +110,10 @@ export const ThesaurusModal = () => {
                         fill="currentFill"
                       />
                     </svg>
-                    </div>
-                )  :
-                 "search"}
+                  </div>
+                ) : (
+                  "search"
+                )}
               </button>
             </form>
             {inputErrorMsg && (
@@ -117,24 +123,39 @@ export const ThesaurusModal = () => {
               </span>
             )}
           </div>
-          <div className="w-full h-[200px] flex flex-col overflow-auto mt-4 border">
+          <div className="w-full h-[200px] flex flex-col mt-4">
             {isClicked && (
-              <div className="w-full h-full flex flex-col gap-2">
-                {termDefinition.length > 0 ? (
-                  termDefinition.map((term, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="w-full h-[50px] flex justify-between items-center p-2 border-b"
-                      >
-                        <span className="font-bold text-lg">{term}</span>
-                        <span className="text-[#6200EA] font-semibold">
-                          {termCategory[index]}
-                        </span>
-                      </div>
-                    );
-                  })
-                ) : ('')}
+              <div className="w-full h-full flex flex-col">
+                <div className="flex w-full h-[25%] mb-4 border">
+                  <div className='w-[80%] h-full flex flex-col'>
+                  <h1 className="font-semibold text-xl capitalize">
+                    {inputValue}
+                  </h1>
+                  <span className="text-[10px] text-gray-400">
+                    yh, before i forget, what's your name?
+                  </span>
+                  </div>
+                  <div className='flex h-full w-[20%] items-center'>
+                    <IoFilterSharp className='w-5 h-5 text-[#FF5722]'/>
+                  </div>
+                </div>
+                <div className='w-full overflow-auto h-[75%] flex flex-col'>
+                {termDefinition.length > 0
+                  ? termDefinition.map((term, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="w-full h-[50px] flex justify-between items-center p-2 border-b"
+                        >
+                          <span className="font-bold text-lg">{term}</span>
+                          <span className="text-[#6200EA] font-semibold">
+                            {termCategory[index]}
+                          </span>
+                        </div>
+                      );
+                    })
+                  : ""}
+                </div>
               </div>
             )}
           </div>
