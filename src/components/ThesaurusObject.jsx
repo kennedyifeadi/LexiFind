@@ -7,9 +7,41 @@ export const ThesaurusDashboardContent = [
       text: "Words with similar meanings (e.g., happy & joyful).",
       icon: <FaEquals />,
       color: "#daf4fe",
-      thesaurusFunction(word){
-        console.log("Synomys")
-        return "Synomys"
+      async thesaurusFunction(word, noOfResults){
+        try {
+          const url = `https://api.api-ninjas.com/v1/thesaurus?word=${word}`
+          
+          const response = await axios(url, {
+            method: "GET",
+            headers: {
+              "X-Api-Key": "mklK5ygNL15766A0ipyT9g==M6FAW9UkksJgi1PI",
+              "Content-Type": "application/json",
+            },
+          });
+          console.log(response);
+          if (response.data.synonyms && response.data.synonyms.length > 0) {
+              const definitions = [];
+              const categories = [];
+              console.log("code ran");
+              for (let i = 0; i < Math.min(noOfResults, response.data.synonyms.length); i++) {
+                definitions.push(response.data.synonyms[i]);
+                let word = response.data.synonyms[i]
+                const wordSearch = await axios.get(
+                  `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+                );
+                console.log(wordSearch);
+                const partOfSpeech = wordSearch.data[0].meanings[0].partOfSpeech
+                categories.push(partOfSpeech);
+              }
+        
+              return { termDefinition: definitions, termCategory: categories };
+          } else {
+              return { termDefinition: ["No definition found."], termCategory: [""] };
+          }
+        } catch (error) {
+          console.error("Error fetching thesaurus data:", error);
+          return { termDefinition: ["Error fetching thesaurus data"], termCategory: [""] };
+        }
       }
     },
     {
