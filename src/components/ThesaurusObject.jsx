@@ -7,29 +7,10 @@ export const ThesaurusDashboardContent = [
       text: "Words with similar meanings (e.g., happy & joyful).",
       icon: <FaEquals />,
       color: "#daf4fe",
-       async thesaurusFunction(word, noOfResults) {
-  try {
-    const url = `https://www.stands4.com/services/v2/abbr.php?uid=13169&tokenid=EmUL8KGWlXMfwDrT&term=${word}&format=json`;
-    const response = await axios.get(url);
-    console.log(response);
-    if (response.data.result && response.data.result.length > 0) {
-        const definitions = [];
-        const categories = [];
-  
-        for (let i = 0; i < Math.min(noOfResults, response.data.result.length); i++) {
-          definitions.push(response.data.result[i].definition);
-          categories.push(response.data.result[i].category);
-        }
-  
-        return { termDefinition: definitions, termCategory: categories };
-    } else {
-        return { termDefinition: ["No definition found."], termCategory: [""] };
-    }
-  } catch (error) {
-    console.error("Error fetching thesaurus data:", error);
-    return { termDefinition: ["Error fetching thesaurus data"], termCategory: [""] };
-  }
-}
+      thesaurusFunction(word){
+        console.log("Synomys")
+        return "Synomys"
+      }
     },
     {
       id: 2,
@@ -103,9 +84,28 @@ export const ThesaurusDashboardContent = [
       text: "Words formed from the first letters of a phrase (e.g., NASA – National Aeronautics and Space Administration).",
       icon: <FaAsterisk />,
       color: "#d9f7f7",
-      thesaurusFunction(word){
-        console.log("acronyms")
-        return "acronyms"
+      async thesaurusFunction(word, noOfResults) {
+        try {
+          const url = `https://www.stands4.com/services/v2/abbr.php?uid=13169&tokenid=EmUL8KGWlXMfwDrT&term=${word}&format=json`;
+          const response = await axios.get(url);
+          console.log(response);
+          if (response.data.result && response.data.result.length > 0) {
+              const definitions = [];
+              const categories = [];
+        
+              for (let i = 0; i < Math.min(noOfResults, response.data.result.length); i++) {
+                definitions.push(response.data.result[i].definition);
+                categories.push(response.data.result[i].category);
+              }
+        
+              return { termDefinition: definitions, termCategory: categories };
+          } else {
+              return { termDefinition: ["No definition found."], termCategory: [""] };
+          }
+        } catch (error) {
+          console.error("Error fetching thesaurus data:", error);
+          return { termDefinition: ["Error fetching thesaurus data"], termCategory: [""] };
+        }
       }
     },
   ];
