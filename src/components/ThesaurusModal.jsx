@@ -48,11 +48,11 @@ export const ThesaurusModal = () => {
         }
         setIsLoading(true);
         await sleep(2000);
-        setIsLoading(false);
         setIsClicked(true);
         const { termDefinition, termCategory } = await findThesaurusCard.thesaurusFunction(inputValue, noOfResults);
         setTermDefinition(termDefinition);
         setTermCategory(termCategory);
+        setIsLoading(false);
     }
 
     const handleClick = async (e) => {
@@ -181,7 +181,7 @@ export const ThesaurusModal = () => {
                   </div>
                 </div>
                 <div className="w-full overflow-auto h-[75%] flex flex-col gap-1">
-                  {termDefinition && termDefinition.length > 0
+                  {termDefinition && termDefinition.length > 0 && !isLoading
                     ? termDefinition.map((term, index) => {
                         return (
                           <div
@@ -200,7 +200,10 @@ export const ThesaurusModal = () => {
                           </div>
                         );
                       })
-                    : ( <p className="text-gray-500 text-center">Not Found</p>)}
+                      : !isLoading && termDefinition.length === 0 ? (
+                        <p className="text-gray-500 text-center">Not Found</p>
+                      ) : null
+                      }
                 </div>
               </div>
             )}
