@@ -87,9 +87,43 @@ export const ThesaurusDashboardContent = [
       text: "Words that sound alike but have different meanings and spellings (e.g., bare & bear).",
       icon: <FaVolumeUp />,
       color: "#f8e3f8",
-      thesaurusFunction(word){
-        console.log("homophones")
-        return "homophones"
+      async thesaurusFunction(word, noOfResults){
+        try {
+          const url = `https://api.datamuse.com/words?rel_hom=${word}`
+          
+          const response = await axios(url);
+          console.log(response);
+          if (response.data && response.data.length > 0) {
+              const definitions = [];
+              const categories = [];
+              for (let i = 0; i < Math.min(noOfResults, response.data.length); i++) {
+                definitions.push(response.data[i].word);
+                let word = response.data[i].word
+                try {
+                  const wordSearch = await axios.get(
+                    `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+                  );
+              
+                  if (wordSearch.data.length > 0) {
+                    const partOfSpeech = wordSearch.data[0].meanings[0]?.partOfSpeech || "nill";
+                    categories.push(partOfSpeech);
+                  } else {
+                    categories.push("Not Found");
+                  }
+                } catch (error) {
+                  // If the word is not found, push "nill" to categories
+                  categories.push("Not Found");
+                }
+              }
+        
+              return { termDefinition: definitions, termCategory: categories };
+          } else {
+              return { termDefinition: ["No Homophones found."], termCategory: [""] };
+          }
+        } catch (error) {
+          console.error("Error fetching thesaurus data:", error);
+          return { termDefinition: ["Error fetching thesaurus data"], termCategory: [""] };
+        }
       }
     },
     {
