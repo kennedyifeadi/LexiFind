@@ -14,13 +14,18 @@ export const Thesaurus = () =>{
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <div className="w-full h-[30%]">
+        <div className="w-full h-[20%]">
           <h1 className="font-bold text-5xl">
             Thesaurus
           </h1>
-          <p className="text-[gray] text-[15px]"> Get top-notch thesaurus with the help of our assistive AI</p>
+          <p className="text-[gray] text-[15px]"> Expand your word choices and refine your language like never before!</p>
         </div>
-        <div className="w-full h-[70%] flex flex-wrap justify-between gap-4">
+        <div className="flex flex-col w-full h-[80%] gap-2">
+          <div>
+            <h1 className="text-xl font-semibold"> Lexical Companion</h1>
+            <p className="text-gray-400 text-[15px]"> pick from our list of thesaurus cards</p>
+          </div>
+          <div className="w-full h-[80%] flex flex-wrap justify-between gap-4">
           {
             ThesaurusDashboardContent.map((Dashboard, index)=>{
               return(
@@ -29,6 +34,7 @@ export const Thesaurus = () =>{
             })
           }
           {/* 1. synomymes 2. anthonmys 3. parts of Speech 4. figure of speech 5. homophones 6. homonyms 7. homographs 8. plindromes */}
+        </div>
         </div>
           <ThesaurusModal/>
       </motion.div>

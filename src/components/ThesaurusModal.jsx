@@ -3,6 +3,9 @@ import { ThesaurusDashboardContent } from './ThesaurusObject';
 import { ThesaurusDashboardContext } from '../context/ThesaurusDashboardContext';
 import { FaExclamationCircle } from "react-icons/fa";
 import { IoFilterSharp } from "react-icons/io5";
+import { CiBookmark } from "react-icons/ci";
+
+
 
 
 export const ThesaurusModal = () => {
@@ -143,7 +146,7 @@ export const ThesaurusModal = () => {
               <div className="w-full h-full flex flex-col">
                 <div className="flex w-full h-[25%] mb-4">
                   <div className="w-[70%] h-full flex flex-col">
-                    <h1 className="font-semibold text-xl capitalize">
+                    <h1 className="font-semibold text-xl uppercase">
                       {inputValue}
                     </h1>
                     <span className="text-[10px] text-gray-400">
@@ -177,18 +180,23 @@ export const ThesaurusModal = () => {
                     </form>
                   </div>
                 </div>
-                <div className="w-full overflow-auto h-[75%] flex flex-col">
+                <div className="w-full overflow-auto h-[75%] flex flex-col gap-1">
                   {termDefinition.length > 0
                     ? termDefinition.map((term, index) => {
                         return (
                           <div
                             key={index}
-                            className="w-full h-[50px] flex justify-between items-center p-2 border-b"
+                            className="w-full h-[50px] flex justify-between items-center p-1 border rounded-md"
                           >
-                            <span className="font-bold text-lg">{term}</span>
-                            <span className="text-[#6200EA] font-semibold">
+                            <span className="font-medium text-[13px]">{term}</span>
+                            <div className='flex items-center'>
+                            <span className="text-[#6200EA] lowercase text-[9px] rounded-full px-1 border">
                               {termCategory[index]}
                             </span>
+                            <span className='text-[#FF5722] text-[15px] cursor-pointer'>
+                            <CiBookmark />
+                            </span>
+                            </div>
                           </div>
                         );
                       })
