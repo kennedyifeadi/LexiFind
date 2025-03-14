@@ -18,25 +18,22 @@ export const ThesaurusDashboardContent = [
               "Content-Type": "application/json",
             },
           });
-          console.log(response);
           if (response.data.synonyms && response.data.synonyms.length > 0) {
               const definitions = [];
               const categories = [];
-              console.log("code ran");
               for (let i = 0; i < Math.min(noOfResults, response.data.synonyms.length); i++) {
                 definitions.push(response.data.synonyms[i]);
                 let word = response.data.synonyms[i]
                 const wordSearch = await axios.get(
                   `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
                 );
-                console.log(wordSearch);
                 const partOfSpeech = wordSearch.data[0].meanings[0].partOfSpeech
                 categories.push(partOfSpeech);
               }
         
               return { termDefinition: definitions, termCategory: categories };
           } else {
-              return { termDefinition: ["No definition found."], termCategory: [""] };
+              return { termDefinition: ["No Synonyms found."], termCategory: [""] };
           }
         } catch (error) {
           console.error("Error fetching thesaurus data:", error);
@@ -50,9 +47,38 @@ export const ThesaurusDashboardContent = [
       text: "Words with opposite meanings (e.g., hot & cold).",
       icon: <FaBalanceScale />,
       color: "#f8e5ce",
-      thesaurusFunction(word){
-        console.log("antonyms")
-        return "antonyms"
+      async thesaurusFunction(word, noOfResults){
+        try {
+          const url = `https://api.api-ninjas.com/v1/thesaurus?word=${word}`
+          
+          const response = await axios(url, {
+            method: "GET",
+            headers: {
+              "X-Api-Key": "mklK5ygNL15766A0ipyT9g==M6FAW9UkksJgi1PI",
+              "Content-Type": "application/json",
+            },
+          });
+          if (response.data.antonyms && response.data.antonyms.length > 0) {
+              const definitions = [];
+              const categories = [];
+              for (let i = 0; i < Math.min(noOfResults, response.data.antonyms.length); i++) {
+                definitions.push(response.data.antonyms[i]);
+                let word = response.data.antonyms[i]
+                const wordSearch = await axios.get(
+                  `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+                );
+                const partOfSpeech = wordSearch.data[0].meanings[0].partOfSpeech
+                categories.push(partOfSpeech);
+              }
+        
+              return { termDefinition: definitions, termCategory: categories };
+          } else {
+              return { termDefinition: ["No Antonyms found."], termCategory: [""] };
+          }
+        } catch (error) {
+          console.error("Error fetching thesaurus data:", error);
+          return { termDefinition: ["Error fetching thesaurus data"], termCategory: [""] };
+        }
       }
     },
     {
