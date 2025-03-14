@@ -31,6 +31,7 @@ export const ThesaurusModal = () => {
         setTermDefinition('');
         setTermCategory('');
         setInputValue('');
+        setInputErrorMsg('')
     };
 
     const handleInput = (e) => {
