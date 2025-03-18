@@ -132,9 +132,43 @@ export const ThesaurusDashboardContent = [
       text: "Words that have the same spelling and pronunciation but different meanings (e.g., bat [an animal] & bat [used in sports]).",
       icon: <FaSpellCheck />,
       color: "#e8f7da",
-      thesaurusFunction(word){
-        console.log("homonyms")
-        return "homonyms"
+      async thesaurusFunction(word, noOfResults) {
+        try {
+          const url = `https://api.datamuse.com/words?ml=${word}`
+          const response = await axios.get(url);
+          const homonyms = response.data.map((item) => item.word);
+          console.log(homonyms);
+          if (homonyms && homonyms.length > 0) {
+            const definitions = [];
+            const categories = [];
+            for (let i = 0; i < Math.min(noOfResults, homonyms.length); i++) {
+              definitions.push(homonyms[i]);
+              let word = homonyms[i]
+              try {
+                const wordSearch = await axios.get(
+                  `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+                );
+            
+                if (wordSearch.data.length > 0) {
+                  const partOfSpeech = wordSearch.data[0].meanings[0]?.partOfSpeech || "nill";
+                  categories.push(partOfSpeech);
+                } else {
+                  categories.push("Not Found");
+                }
+              } catch (error) {
+                // If the word is not found, push "nill" to categories
+                categories.push("Not Found");
+              }
+            }
+      
+            return { termDefinition: definitions, termCategory: categories };
+        } else {
+            return { termDefinition: ["No Homonyms found."], termCategory: [""] };
+        }
+        }catch (error) {
+          console.error("Error fetching thesaurus data:", error);
+          return { termDefinition: ["Error fetching thesaurus data"], termCategory: [""] };
+        }
       }
     },
     {
